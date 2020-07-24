@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>User Login</h1>
+    <form method="POST">
+    {% csrf_token %}
+    {% for field in form %}
+        {{ field.label_tag }} <br>
+    {{ field }} <br>
+        {% endfor %}
+        <br>
+    {% if form.non_field_errors %}
+        <div style="color: red">
+            <p>{{ form.non_field_errors }}</p>
+        </div>
+    {% endif %}
+        <button type="submit">Login</button>
+    </form>
+
+{% endblock %}

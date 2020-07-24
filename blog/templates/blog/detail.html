@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        .card{
+            max-width: 800px;
+        }
+        .container{
+            padding: 20px;
+        }
+    </style>
+    <div class="container">
+        <div class="card m-auto">
+                <img src="{{ post.image.url }}" class="card-img-top">
+            <div class="card-body my-2">
+                <h2 class="class-title">{{ post.title }}</h2>
+                <p class="card-text">{{ post.content }}</p>
+                <hr>
+                {% if post.author == request.user %}
+                    <h3><a href="{% url 'blog:edit' post.slug %}">Update</a></h3>
+                    <h3><a href="{% url 'blog:delete' post.pk %}">Delete</a></h3>
+                {% endif %}
+            </div>
+            <div class="card-footer text-muted">
+                    Created at: {{ post.date_published }}
+                    Updated On: {{ post.date_updated }}
+                    Author: {{ post.author }}
+                </div>
+        </div>
+        </div>
+{% endblock %}
